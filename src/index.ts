@@ -637,12 +637,16 @@ let data = [
 
 let event = {
   EventId: 217,
+  // EventId: 213,
   LeagueId: 1,
   Name: 'UFC Fight Night: Holloway vs. Rodriguez',
   ShortName: 'UFC Fight Night',
   Season: 2021,
-  Day: '2021-11-13T00:00:00',
+  // Day: '2021-11-13T00:00:00',
   DateTime: '2021-11-13T13:00:00',
+  // Upcoming Event ^
+  // DateTime: '2021-11-06T18:00:00',
+
   Status: 'Scheduled',
   Active: true,
   Fights: [
@@ -1488,12 +1492,22 @@ async function getCurrentEvent(id: number) {
 
     let daysLeftForEvent = Math.floor(CheckDate(event.DateTime, 3));
     console.log(daysLeftForEvent);
-
+    daysLeftForEvent = 100;
     switch (true) {
-      case daysLeftForEvent < 144:
-        console.log('Fight week Baby');
+      case daysLeftForEvent <= 1:
+        return console.log(`Just Bleed ! Tune In #${event.Name}`);
+      case daysLeftForEvent <= 5:
+        return console.log(`Only ${daysLeftForEvent} Left for #${event.Name}`);
+      case daysLeftForEvent < 20:
+        return console.log(`Fight Night ! #${event.Name}`);
+      case daysLeftForEvent < 96:
+        return console.log(
+          `This Weeks (${event.Name}) Main Card : ${event.Fights[0].WeightClass} bout between ${event.Fights[0].Fighters[0].FirstName} ${event.Fights[0].Fighters[0].LastName} vs ${event.Fights[0].Fighters[1].FirstName} ${event.Fights[0].Fighters[1].LastName} `
+        );
       case daysLeftForEvent < 120:
-        console.log('less than 120');
+        return console.log('less than 120');
+      case daysLeftForEvent < 144:
+        return console.log(`Fight week ! #${event.Name}`);
     }
     // tweet("")
   } catch (error) {
