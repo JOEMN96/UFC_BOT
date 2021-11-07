@@ -3,6 +3,8 @@ import dotenv from 'dotenv';
 import axios from './axios';
 import { TwitterClient } from 'twitter-api-client';
 
+import Airtable from './functions/airtable';
+
 dotenv.config();
 
 let data = [
@@ -1488,6 +1490,30 @@ async function getCurrentEvent(id: number) {
   try {
     // let res = await axios.get(`Event/${id}?key=${process.env.NODE_ENV}`)
     // let event = res.data()
+
+    // @ts-ignore
+    let res = await Airtable.select({
+      view: 'Grid view',
+    }).firstPage();
+
+    console.log(res);
+
+    // Airtable('ufc')
+    //   .select({
+    //     view: 'Grid view',
+    //   })
+    //   .firstPage(function (err, records) {
+    //     if (err) {
+    //       console.error(err);
+    //       return;
+    //     }
+    //     records.forEach(function (record) {
+    //       console.log(record.get('Status'));
+    //     });
+    //   });
+    console.log('fired');
+    console.log('fired');
+
     console.log(event.DateTime);
 
     let daysLeftForEvent = CheckDate(event.DateTime, 3);
@@ -1530,4 +1556,4 @@ async function tweet(tweet: string) {
   }
 }
 
-getUpcomingEvent();
+// getUpcomingEvent();
