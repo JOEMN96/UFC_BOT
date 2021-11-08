@@ -1,0 +1,8 @@
+{
+  "version": 3,
+  "sources": ["../../../../Desktop/UFC/src/functions/server.ts"],
+  "sourceRoot": "C:/Users/arulj/AppData/Local/Temp/tmp-10908-DR1gg5xyxzJX",
+  "sourcesContent": ["exports.handler = async (event) => {\r\n  if (event.httpMethod === 'GET') {\r\n    return {\r\n      statusCode: 200,\r\n      body: JSON.stringify({}),\r\n    };\r\n  } else {\r\n    return {\r\n      statusCode: 404,\r\n      body: JSON.stringify({ MSG: 'ERROR' }),\r\n    };\r\n  }\r\n};\r\n"],
+  "mappings": ";AAAA,QAAQ,UAAU,OAAO,UAAU;AACjC,MAAI,MAAM,eAAe,OAAO;AAC9B,WAAO;AAAA,MACL,YAAY;AAAA,MACZ,MAAM,KAAK,UAAU;AAAA;AAAA,SAElB;AACL,WAAO;AAAA,MACL,YAAY;AAAA,MACZ,MAAM,KAAK,UAAU,EAAE,KAAK;AAAA;AAAA;AAAA;",
+  "names": []
+}
