@@ -1478,6 +1478,7 @@ async function getUpcomingEvent() {
       upcomingEventID = 166;
       return;
     });
+
     if (upcomingEventID) {
       getCurrentEvent(upcomingEventID);
     }
@@ -1491,26 +1492,6 @@ async function getCurrentEvent(id: number) {
     // let res = await axios.get(`Event/${id}?key=${process.env.NODE_ENV}`)
     // let event = res.data()
 
-    // @ts-ignore
-    let res = await Airtable.select({
-      view: 'Grid view',
-    }).firstPage();
-
-    console.log(res);
-
-    // Airtable('ufc')
-    //   .select({
-    //     view: 'Grid view',
-    //   })
-    //   .firstPage(function (err, records) {
-    //     if (err) {
-    //       console.error(err);
-    //       return;
-    //     }
-    //     records.forEach(function (record) {
-    //       console.log(record.get('Status'));
-    //     });
-    //   });
     console.log('fired');
     console.log('fired');
 
@@ -1556,4 +1537,4 @@ async function tweet(tweet: string) {
   }
 }
 
-// getUpcomingEvent();
+getUpcomingEvent();

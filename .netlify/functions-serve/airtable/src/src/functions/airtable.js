@@ -1979,10 +1979,10 @@ var require_url_state_machine = __commonJS({
     function isNormalizedWindowsDriveLetter(string) {
       return /^[A-Za-z]:$/.test(string);
     }
-    function URLStateMachine(input, base, encodingOverride, url, stateOverride) {
+    function URLStateMachine(input, base2, encodingOverride, url, stateOverride) {
       this.pointer = 0;
       this.input = input;
-      this.base = base || null;
+      this.base = base2 || null;
       this.encodingOverride = encodingOverride || "utf-8";
       this.stateOverride = stateOverride;
       this.url = url;
@@ -2649,10 +2649,10 @@ var require_URL_impl = __commonJS({
     exports.implementation = class URLImpl {
       constructor(constructorArgs) {
         const url = constructorArgs[0];
-        const base = constructorArgs[1];
+        const base2 = constructorArgs[1];
         let parsedBase = null;
-        if (base !== void 0) {
-          parsedBase = usm.basicURLParse(base);
+        if (base2 !== void 0) {
+          parsedBase = usm.basicURLParse(base2);
           if (parsedBase === "failure") {
             throw new TypeError("Invalid base URL");
           }
@@ -4694,10 +4694,10 @@ var require_cjs_ponyfill = __commonJS({
         _get = Reflect.get;
       } else {
         _get = function _get2(target2, property2, receiver2) {
-          var base = _superPropBase(target2, property2);
-          if (!base)
+          var base2 = _superPropBase(target2, property2);
+          if (!base2)
             return;
-          var desc = Object.getOwnPropertyDescriptor(base, property2);
+          var desc = Object.getOwnPropertyDescriptor(base2, property2);
           if (desc.get) {
             return desc.get.call(receiver2);
           }
@@ -5127,8 +5127,8 @@ var require_record = __commonJS({
     };
     var callback_to_promise_1 = __importDefault(require_callback_to_promise());
     var Record = function() {
-      function Record2(table, recordId, recordJson) {
-        this._table = table;
+      function Record2(table2, recordId, recordJson) {
+        this._table = table2;
         this.id = recordId || recordJson.id;
         this.setRawJson(recordJson);
         this.save = callback_to_promise_1.default(save, this);
@@ -5335,8 +5335,8 @@ var require_query = __commonJS({
     var has_1 = __importDefault(require_has());
     var query_params_1 = require_query_params();
     var Query = function() {
-      function Query2(table, params) {
-        this._table = table;
+      function Query2(table2, params) {
+        this._table = table2;
         this._params = params;
         this.firstPage = callback_to_promise_1.default(firstPage, this);
         this.eachPage = callback_to_promise_1.default(eachPage, this, 1);
@@ -5458,11 +5458,11 @@ var require_table = __commonJS({
     var record_1 = __importDefault(require_record());
     var callback_to_promise_1 = __importDefault(require_callback_to_promise());
     var Table = function() {
-      function Table2(base, tableId, tableName) {
+      function Table2(base2, tableId, tableName) {
         if (!tableId && !tableName) {
           throw new Error("Table name or table ID is required");
         }
-        this._base = base;
+        this._base = base2;
         this.id = tableId;
         this.name = tableName;
         this.find = callback_to_promise_1.default(this._findRecordById, this);
@@ -5815,12 +5815,12 @@ var require_run_action = __commonJS({
     var fetch_1 = __importDefault(require_fetch());
     var abort_controller_1 = __importDefault(require_abort_controller2());
     var userAgent = "Airtable.js/" + package_version_1.default;
-    function runAction(base, method, path, queryParams, bodyData, callback, numAttempts) {
-      var url = base._airtable._endpointUrl + "/v" + base._airtable._apiVersionMajor + "/" + base._id + path + "?" + object_to_query_param_string_1.default(queryParams);
+    function runAction(base2, method, path, queryParams, bodyData, callback, numAttempts) {
+      var url = base2._airtable._endpointUrl + "/v" + base2._airtable._apiVersionMajor + "/" + base2._id + path + "?" + object_to_query_param_string_1.default(queryParams);
       var headers = {
-        authorization: "Bearer " + base._airtable._apiKey,
-        "x-api-version": base._airtable._apiVersion,
-        "x-airtable-application-id": base.getId(),
+        authorization: "Bearer " + base2._airtable._apiKey,
+        "x-api-version": base2._airtable._apiVersion,
+        "x-airtable-application-id": base2.getId(),
         "content-type": "application/json"
       };
       var isBrowser = typeof window !== "undefined";
@@ -5845,17 +5845,17 @@ var require_run_action = __commonJS({
       }
       var timeout = setTimeout(function() {
         controller.abort();
-      }, base._airtable._requestTimeout);
+      }, base2._airtable._requestTimeout);
       fetch_1.default(url, options).then(function(resp) {
         clearTimeout(timeout);
-        if (resp.status === 429 && !base._airtable._noRetryIfRateLimited) {
+        if (resp.status === 429 && !base2._airtable._noRetryIfRateLimited) {
           var backoffDelayMs = exponential_backoff_with_jitter_1.default(numAttempts);
           setTimeout(function() {
-            runAction(base, method, path, queryParams, bodyData, callback, numAttempts + 1);
+            runAction(base2, method, path, queryParams, bodyData, callback, numAttempts + 1);
           }, backoffDelayMs);
         } else {
           resp.json().then(function(body) {
-            var error = base._checkStatusForError(resp.status, body);
+            var error = base2._checkStatusForError(resp.status, body);
             var r = {};
             Object.keys(resp).forEach(function(property) {
               r[property] = resp[property];
@@ -5864,7 +5864,7 @@ var require_run_action = __commonJS({
             r.statusCode = resp.status;
             callback(error, r, body);
           }).catch(function() {
-            callback(base._checkStatusForError(resp.status));
+            callback(base2._checkStatusForError(resp.status));
           });
         }
       }).catch(function(error) {
@@ -6017,15 +6017,15 @@ var require_base = __commonJS({
         return this._id;
       };
       Base2.createFunctor = function(airtable, baseId) {
-        var base = new Base2(airtable, baseId);
+        var base2 = new Base2(airtable, baseId);
         var baseFn = function(tableName) {
-          return base.doCall(tableName);
+          return base2.doCall(tableName);
         };
-        baseFn._base = base;
-        baseFn.table = base.table.bind(base);
-        baseFn.makeRequest = base.makeRequest.bind(base);
-        baseFn.runAction = base.runAction.bind(base);
-        baseFn.getId = base.getId.bind(base);
+        baseFn._base = base2;
+        baseFn.table = base2.table.bind(base2);
+        baseFn.makeRequest = base2.makeRequest.bind(base2);
+        baseFn.runAction = base2.runAction.bind(base2);
+        baseFn.getId = base2.getId.bind(base2);
         return baseFn;
       };
       return Base2;
@@ -6129,7 +6129,9 @@ __export(exports, {
 var import_dotenv = __toModule(require_main());
 var import_airtable = __toModule(require_airtable());
 import_dotenv.default.config();
-var airtable_default = new import_airtable.default({ apiKey: process.env.AIRTABLE_API }).base(process.env.AIRTABLE_BASE_ID);
+var base = new import_airtable.default({ apiKey: process.env.AIRTABLE_API }).base(process.env.AIRTABLE_BASE_ID);
+var table = base("ufc");
+var airtable_default = table;
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {});
 //# sourceMappingURL=airtable.js.map
