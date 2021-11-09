@@ -577,7 +577,7 @@ let data = [
     Season: 2021,
     Day: '2021-11-06T00:00:00',
     DateTime: '2021-11-06T18:00:00',
-    Status: 'Scheduled',
+    Status: 'Final',
     Active: true,
   },
   {
@@ -639,16 +639,12 @@ let data = [
 
 let event = {
   EventId: 217,
-  // EventId: 213,
   LeagueId: 1,
   Name: 'UFC Fight Night: Holloway vs. Rodriguez',
   ShortName: 'UFC Fight Night',
   Season: 2021,
   Day: '2021-11-13T00:00:00',
-  // DateTime: '2021-11-13T13:00:00',
-  // Upcoming Event ^
-  DateTime: '2021-11-06T18:00:00',
-
+  DateTime: '2021-11-13T13:00:00',
   Status: 'Scheduled',
   Active: true,
   Fights: [
@@ -675,19 +671,19 @@ let event = {
           PreFightDraws: 0,
           PreFightNoContests: 0,
           Winner: false,
-          Moneyline: -529,
+          Moneyline: -677,
           Active: true,
         },
         {
           FighterId: 140000615,
           FirstName: 'Yair',
           LastName: 'Rodriguez',
-          PreFightWins: 13,
+          PreFightWins: 14,
           PreFightLosses: 2,
           PreFightDraws: 0,
           PreFightNoContests: 1,
           Winner: false,
-          Moneyline: 386,
+          Moneyline: 465,
           Active: true,
         },
       ],
@@ -715,7 +711,7 @@ let event = {
           PreFightDraws: 0,
           PreFightNoContests: 0,
           Winner: false,
-          Moneyline: -160,
+          Moneyline: -154,
           Active: true,
         },
         {
@@ -723,11 +719,11 @@ let event = {
           FirstName: 'Marcos Rogerio',
           LastName: 'de Lima',
           PreFightWins: 18,
-          PreFightLosses: 7,
+          PreFightLosses: 8,
           PreFightDraws: 1,
           PreFightNoContests: 0,
           Winner: false,
-          Moneyline: 133,
+          Moneyline: 128,
           Active: true,
         },
       ],
@@ -755,7 +751,7 @@ let event = {
           PreFightDraws: 0,
           PreFightNoContests: 0,
           Winner: false,
-          Moneyline: -330,
+          Moneyline: -308,
           Active: true,
         },
         {
@@ -767,7 +763,7 @@ let event = {
           PreFightDraws: 0,
           PreFightNoContests: 0,
           Winner: false,
-          Moneyline: 248,
+          Moneyline: 238,
           Active: true,
         },
       ],
@@ -835,7 +831,7 @@ let event = {
           PreFightDraws: 0,
           PreFightNoContests: 0,
           Winner: false,
-          Moneyline: null,
+          Moneyline: 120,
           Active: true,
         },
         {
@@ -847,13 +843,13 @@ let event = {
           PreFightDraws: 0,
           PreFightNoContests: 0,
           Winner: false,
-          Moneyline: null,
+          Moneyline: -150,
           Active: true,
         },
       ],
     },
     {
-      FightId: 2569,
+      FightId: 2571,
       Order: 5,
       Status: 'Scheduled',
       WeightClass: 'Middleweight',
@@ -867,6 +863,18 @@ let event = {
       Active: true,
       Fighters: [
         {
+          FighterId: 140000229,
+          FirstName: 'Kevin',
+          LastName: 'Holland',
+          PreFightWins: 21,
+          PreFightLosses: 7,
+          PreFightDraws: 0,
+          PreFightNoContests: 1,
+          Winner: false,
+          Moneyline: 178,
+          Active: true,
+        },
+        {
           FighterId: 140000427,
           FirstName: 'Kyle',
           LastName: 'Daukaus',
@@ -875,19 +883,7 @@ let event = {
           PreFightDraws: 0,
           PreFightNoContests: 1,
           Winner: false,
-          Moneyline: null,
-          Active: true,
-        },
-        {
-          FighterId: 140000923,
-          FirstName: 'Roman',
-          LastName: 'Dolidze',
-          PreFightWins: 9,
-          PreFightLosses: 1,
-          PreFightDraws: 0,
-          PreFightNoContests: 0,
-          Winner: false,
-          Moneyline: null,
+          Moneyline: -222,
           Active: true,
         },
       ],
@@ -915,7 +911,7 @@ let event = {
           PreFightDraws: 1,
           PreFightNoContests: 1,
           Winner: false,
-          Moneyline: -155,
+          Moneyline: -139,
           Active: true,
         },
         {
@@ -927,7 +923,7 @@ let event = {
           PreFightDraws: 0,
           PreFightNoContests: 0,
           Winner: false,
-          Moneyline: 129,
+          Moneyline: 115,
           Active: true,
         },
       ],
@@ -995,7 +991,7 @@ let event = {
           PreFightDraws: 0,
           PreFightNoContests: 0,
           Winner: false,
-          Moneyline: -217,
+          Moneyline: -246,
           Active: true,
         },
         {
@@ -1007,7 +1003,7 @@ let event = {
           PreFightDraws: 0,
           PreFightNoContests: 0,
           Winner: false,
-          Moneyline: 175,
+          Moneyline: 196,
           Active: true,
         },
       ],
@@ -1035,7 +1031,7 @@ let event = {
           PreFightDraws: 0,
           PreFightNoContests: 0,
           Winner: false,
-          Moneyline: -117,
+          Moneyline: -100,
           Active: true,
         },
         {
@@ -1047,7 +1043,7 @@ let event = {
           PreFightDraws: 1,
           PreFightNoContests: 0,
           Winner: false,
-          Moneyline: -105,
+          Moneyline: -122,
           Active: true,
         },
       ],
@@ -1075,7 +1071,7 @@ let event = {
           PreFightDraws: 0,
           PreFightNoContests: 0,
           Winner: false,
-          Moneyline: -144,
+          Moneyline: -139,
           Active: true,
         },
         {
@@ -1087,7 +1083,7 @@ let event = {
           PreFightDraws: 0,
           PreFightNoContests: 0,
           Winner: false,
-          Moneyline: 120,
+          Moneyline: 117,
           Active: true,
         },
       ],
@@ -1115,7 +1111,7 @@ let event = {
           PreFightDraws: 0,
           PreFightNoContests: 0,
           Winner: false,
-          Moneyline: -272,
+          Moneyline: -303,
           Active: true,
         },
         {
@@ -1127,7 +1123,7 @@ let event = {
           PreFightDraws: 0,
           PreFightNoContests: 0,
           Winner: false,
-          Moneyline: 215,
+          Moneyline: 236,
           Active: true,
         },
       ],
@@ -1195,7 +1191,7 @@ let event = {
           PreFightDraws: 0,
           PreFightNoContests: 0,
           Winner: false,
-          Moneyline: null,
+          Moneyline: 149,
           Active: true,
         },
         {
@@ -1207,7 +1203,7 @@ let event = {
           PreFightDraws: 0,
           PreFightNoContests: 0,
           Winner: false,
-          Moneyline: null,
+          Moneyline: -180,
           Active: true,
         },
       ],
@@ -1235,7 +1231,7 @@ let event = {
           PreFightDraws: 0,
           PreFightNoContests: 0,
           Winner: false,
-          Moneyline: 113,
+          Moneyline: 101,
           Active: true,
         },
         {
@@ -1247,7 +1243,7 @@ let event = {
           PreFightDraws: 1,
           PreFightNoContests: 0,
           Winner: false,
-          Moneyline: -137,
+          Moneyline: -124,
           Active: true,
         },
       ],
@@ -1436,6 +1432,46 @@ let event = {
         },
       ],
     },
+    {
+      FightId: 2569,
+      Order: null,
+      Status: 'Canceled',
+      WeightClass: 'Middleweight',
+      CardSegment: 'Main Card',
+      Referee: null,
+      Rounds: 3,
+      ResultClock: 0,
+      ResultRound: 0,
+      ResultType: 'Scrambled',
+      WinnerId: null,
+      Active: false,
+      Fighters: [
+        {
+          FighterId: 140000427,
+          FirstName: 'Kyle',
+          LastName: 'Daukaus',
+          PreFightWins: 10,
+          PreFightLosses: 2,
+          PreFightDraws: 0,
+          PreFightNoContests: 1,
+          Winner: false,
+          Moneyline: -275,
+          Active: false,
+        },
+        {
+          FighterId: 140000923,
+          FirstName: 'Roman',
+          LastName: 'Dolidze',
+          PreFightWins: 9,
+          PreFightLosses: 1,
+          PreFightDraws: 0,
+          PreFightNoContests: 0,
+          Winner: false,
+          Moneyline: 195,
+          Active: false,
+        },
+      ],
+    },
   ],
 };
 // console.log(DateTime.fromISO("2021-11-06T00:00:00").toFormat("DD"));
@@ -1459,7 +1495,11 @@ function CheckDate(_eventDate: string, param: number) {
   } else if (param == 3) {
     // @ts-ignore
     let hours = Duration.fromObject(differnce.values).as('hours');
+    console.log(hours);
+
     return hours;
+  } else {
+    return;
   }
   // @ts-ignore
   console.log(differnce.values);
@@ -1467,62 +1507,62 @@ function CheckDate(_eventDate: string, param: number) {
 
 async function getUpcomingEvent() {
   try {
-    // let res = await axios.get(`Schedule/UFC/2021?key=${process.env.NODE_ENV}`)
-    // let data = res.data()
-    let upcomingEventID = null;
+    // let res = await axios.get(`Schedule/UFC/2021?key=${process.env.NODE_ENV}`);
+    // let data = res.data;
+    let events = [];
     data.forEach((event) => {
       let res = CheckDate(event.DateTime, 0);
-      // if(res <= 5 && res > 0) {
-      //     upcomingEventID = event.EventId;
-      // }
-      upcomingEventID = 166;
+      if (res <= 5 && res > 0) {
+        events.push(event);
+      }
       return;
     });
 
-    if (upcomingEventID) {
-      getCurrentEvent(upcomingEventID);
+    if (events.length > 0) {
+      let upcomingEventID = events[0].EventId;
+      console.log(events[0]);
+
+      return getCurrentEvent(upcomingEventID);
     }
   } catch (e) {
+    console.log(e);
+
     return;
   }
 }
 
 async function getCurrentEvent(id: number) {
   try {
-    // let res = await axios.get(`Event/${id}?key=${process.env.NODE_ENV}`)
-    // let event = res.data()
+    // let res = await axios.get(`Event/${id}?key=${process.env.NODE_ENV}`);
+    // let event = res.data;
 
-    console.log('fired');
-    console.log('fired');
+    let hoursLeftForEvent = CheckDate(event.DateTime, 3);
 
-    console.log(event.DateTime);
-
-    let daysLeftForEvent = CheckDate(event.DateTime, 3);
-    daysLeftForEvent = 145;
-    console.log(daysLeftForEvent);
+    console.log(hoursLeftForEvent);
 
     switch (true) {
-      case daysLeftForEvent <= 0:
+      case hoursLeftForEvent <= 0:
         return;
-      case daysLeftForEvent <= 1 && daysLeftForEvent > 0:
+      case hoursLeftForEvent <= 1 && hoursLeftForEvent > 0:
         return console.log(`Just Bleed ! Tune In #${event.Name}`);
-      case daysLeftForEvent <= 5 && daysLeftForEvent >= 1:
-        return console.log(`Only ${Math.round(daysLeftForEvent)} Hours Left for #${event.Name}`);
-      case daysLeftForEvent <= 20:
+      case hoursLeftForEvent <= 5 && hoursLeftForEvent >= 1:
+        return console.log(`Only ${Math.round(hoursLeftForEvent)} Hours Left for #${event.Name}`);
+      case hoursLeftForEvent <= 20:
         return console.log(`Fight Night ! #${event.Name} @ufc`);
-      case daysLeftForEvent < 96:
+      case hoursLeftForEvent < 96:
         return console.log(
           `This Weeks (${event.Name}) Main Card : ${event.Fights[1].WeightClass} bout between ${event.Fights[1].Fighters[0].FirstName} ${event.Fights[1].Fighters[0].LastName} vs ${event.Fights[1].Fighters[1].FirstName} ${event.Fights[1].Fighters[1].LastName} `
         );
-      case daysLeftForEvent < 120:
+      case hoursLeftForEvent < 120:
         return console.log(
           `This Weeks (${event.Name}) Main Card : ${event.Fights[0].WeightClass} bout between ${event.Fights[0].Fighters[0].FirstName} ${event.Fights[0].Fighters[0].LastName} vs ${event.Fights[0].Fighters[1].FirstName} ${event.Fights[0].Fighters[1].LastName} `
         );
-      case daysLeftForEvent < 144:
+      case hoursLeftForEvent < 144:
         return console.log(`Fight week ! #${event.Name}`);
     }
     // tweet("")
   } catch (error) {
+    console.log(error);
     return;
   }
 }
