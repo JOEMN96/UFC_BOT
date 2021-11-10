@@ -6186,7 +6186,10 @@ var updateStatus = async (event) => {
     let _a = JSON.parse(event.body), { id } = _a, fields = __objRest(_a, ["id"]);
     let response = await airtable_default.update([{ id, fields }]);
     response.statusCode = 200;
-    return response;
+    return {
+      statusCode: 200,
+      body: JSON.stringify(response)
+    };
   } catch (error) {
     return error;
   }

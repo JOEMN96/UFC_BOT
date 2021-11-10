@@ -2,6 +2,7 @@ import { DateTime, Duration } from 'luxon';
 import dotenv from 'dotenv';
 import axios from './axios';
 import { TwitterClient } from 'twitter-api-client';
+import axiosAirtableApi from './axiosAirtable';
 
 import Airtable from './functions/airtable';
 
@@ -1537,11 +1538,13 @@ async function getCurrentEvent(id: number) {
     // let event = res.data;
 
     let hoursLeftForEvent = CheckDate(event.DateTime, 3);
-
-    console.log(hoursLeftForEvent);
+    let status = await getServerValue();
+    let id = 'recahwjlSigTOaF6y';
+    console.log(hoursLeftForEvent, status);
 
     switch (true) {
       case hoursLeftForEvent <= 0:
+        updateServerValue({ id, Status: 'END' });
         return;
       case hoursLeftForEvent <= 1 && hoursLeftForEvent > 0:
         return console.log(`Just Bleed ! Tune In #${event.Name}`);
@@ -1558,7 +1561,12 @@ async function getCurrentEvent(id: number) {
           `This Weeks (${event.Name}) Main Card : ${event.Fights[0].WeightClass} bout between ${event.Fights[0].Fighters[0].FirstName} ${event.Fights[0].Fighters[0].LastName} vs ${event.Fights[0].Fighters[1].FirstName} ${event.Fights[0].Fighters[1].LastName} `
         );
       case hoursLeftForEvent < 144:
-        return console.log(`Fight week ! #${event.Name}`);
+        if (status == 'INIT') {
+          updateServerValue({ id, Status: 'LEVEL2' });
+          return console.log(`Fight week ! #${event.Name}`);
+        }
+      default:
+        return;
     }
     // tweet("")
   } catch (error) {
@@ -1578,3 +1586,35 @@ async function tweet(tweet: string) {
 }
 
 getUpcomingEvent();
+
+async function getServerValue() {
+  try {
+    let {
+      data: { formattedData },
+    } = await axiosAirtableApi.get('');
+    return formattedData[0].Status;
+  } catch (_) {
+    return null;
+  }
+}
+interface Body {
+  id: string;
+  Status: string;
+}
+
+async function updateServerValue(body: Body) {
+  try {
+    let { status } = await axiosAirtableApi.get('');
+    console.log(status);
+
+    if (status == 200) {
+      return true;
+    } else {
+      throw new Error('Api ERROR');
+    }
+  } catch (_) {
+    return null;
+  }
+}
+
+updateServerValue({ id: 'recahwjlSigTOaF6y', Status: 'LEVEL2' });

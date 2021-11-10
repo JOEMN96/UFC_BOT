@@ -27,7 +27,10 @@ export const updateStatus = async (event) => {
     let response = await Airtable.update([{ id, fields }]);
     // @ts-ignore
     response.statusCode = 200;
-    return response;
+    return {
+      statusCode: 200,
+      body: JSON.stringify(response),
+    };
   } catch (error) {
     return error;
   }
