@@ -1521,8 +1521,6 @@ async function getUpcomingEvent() {
 
     if (events.length > 0) {
       let upcomingEventID = events[0].EventId;
-      console.log(events[0]);
-
       return getCurrentEvent(upcomingEventID);
     }
   } catch (e) {
@@ -1539,12 +1537,13 @@ async function getCurrentEvent(id: number) {
 
     let hoursLeftForEvent = CheckDate(event.DateTime, 3);
     let status = await getServerValue();
-    let id = 'recahwjlSigTOaF6y';
+    let AirtableID = 'recahwjlSigTOaF6y';
     console.log(hoursLeftForEvent, status);
-
+    let mainCards = event.Fights.filter((fight) => fight.CardSegment == 'Main Card' && fight.Status != 'Canceled');
+    console.log(mainCards);
     switch (true) {
       case hoursLeftForEvent <= 0:
-        updateServerValue({ id, Status: 'END' });
+        updateServerValue({ id: AirtableID, Status: 'END' });
         return;
       case hoursLeftForEvent <= 1 && hoursLeftForEvent > 0:
         return console.log(`Just Bleed ! Tune In #${event.Name}`);
@@ -1562,7 +1561,7 @@ async function getCurrentEvent(id: number) {
         );
       case hoursLeftForEvent < 144:
         if (status == 'INIT') {
-          updateServerValue({ id, Status: 'LEVEL2' });
+          updateServerValue({ id: AirtableID, Status: 'LEVEL2' });
           return console.log(`Fight week ! #${event.Name}`);
         }
       default:
@@ -1604,9 +1603,7 @@ interface Body {
 
 async function updateServerValue(body: Body) {
   try {
-    let { status } = await axiosAirtableApi.get('');
-    console.log(status);
-
+    let { status } = await axiosAirtableApi.post('', body);
     if (status == 200) {
       return true;
     } else {
@@ -1616,5 +1613,3 @@ async function updateServerValue(body: Body) {
     return null;
   }
 }
-
-updateServerValue({ id: 'recahwjlSigTOaF6y', Status: 'LEVEL2' });
