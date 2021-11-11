@@ -1496,7 +1496,6 @@ function CheckDate(_eventDate: string, param: number) {
   } else if (param == 3) {
     // @ts-ignore
     let hours = Duration.fromObject(differnce.values).as('hours');
-    console.log(hours);
 
     return hours;
   } else {
@@ -1523,9 +1522,7 @@ async function getUpcomingEvent() {
       let upcomingEventID = events[0].EventId;
       return getCurrentEvent(upcomingEventID);
     }
-  } catch (e) {
-    console.log(e);
-
+  } catch (_) {
     return;
   }
 }
@@ -1538,30 +1535,45 @@ async function getCurrentEvent(id: number) {
     let hoursLeftForEvent = CheckDate(event.DateTime, 3);
     let status = await getServerValue();
     let AirtableID = 'recahwjlSigTOaF6y';
-    console.log(hoursLeftForEvent, status);
     let mainCards = event.Fights.filter((fight) => fight.CardSegment == 'Main Card' && fight.Status != 'Canceled');
-    console.log(mainCards);
+
     switch (true) {
       case hoursLeftForEvent <= 0:
-        updateServerValue({ id: AirtableID, Status: 'END' });
+        updateServerValue({ id: AirtableID, Status: 'INIT' });
         return;
-      case hoursLeftForEvent <= 1 && hoursLeftForEvent > 0:
-        return console.log(`Just Bleed ! Tune In #${event.Name}`);
-      case hoursLeftForEvent <= 5 && hoursLeftForEvent >= 1:
-        return console.log(`Only ${Math.round(hoursLeftForEvent)} Hours Left for #${event.Name}`);
+      case hoursLeftForEvent <= 4:
+        if (status == 'HoursLeft') {
+          updateServerValue({ id: AirtableID, Status: 'INIT' });
+          return console.log(`Just Bleed ! Tune In #${event.Name}`);
+        }
+      case hoursLeftForEvent < 6:
+        if (status == 'HoursLeft') {
+          updateServerValue({ id: AirtableID, Status: 'HoursLeft' });
+          return console.log(`Only ${Math.round(hoursLeftForEvent)} Hours Left for #${event.Name}`);
+        }
       case hoursLeftForEvent <= 20:
-        return console.log(`Fight Night ! #${event.Name} @ufc`);
+        if (status == 'FightNight') {
+          updateServerValue({ id: AirtableID, Status: 'HoursLeft' });
+          return console.log(`Fight Night ! #${event.Name} @ufc`);
+        }
       case hoursLeftForEvent < 96:
-        return console.log(
-          `This Weeks (${event.Name}) Main Card : ${event.Fights[1].WeightClass} bout between ${event.Fights[1].Fighters[0].FirstName} ${event.Fights[1].Fighters[0].LastName} vs ${event.Fights[1].Fighters[1].FirstName} ${event.Fights[1].Fighters[1].LastName} `
-        );
+        if (status == 'MainCard 2') {
+          updateServerValue({ id: AirtableID, Status: 'FightNight' });
+          return console.log(
+            `This Weeks (${event.Name}) Main Card [${mainCards[1].Order}] : ${mainCards[1].WeightClass} bout between ${mainCards[1].Fighters[0].FirstName} ${mainCards[1].Fighters[0].LastName} and ${mainCards[1].Fighters[1].FirstName} ${mainCards[1].Fighters[1].LastName} `
+          );
+        }
+
       case hoursLeftForEvent < 120:
-        return console.log(
-          `This Weeks (${event.Name}) Main Card : ${event.Fights[0].WeightClass} bout between ${event.Fights[0].Fighters[0].FirstName} ${event.Fights[0].Fighters[0].LastName} vs ${event.Fights[0].Fighters[1].FirstName} ${event.Fights[0].Fighters[1].LastName} `
-        );
+        if (status == 'MainCard 1') {
+          updateServerValue({ id: AirtableID, Status: 'MainCard 2' });
+          return console.log(
+            `This Weeks (${event.Name}) Main Card [${mainCards[0].Order}] : ${mainCards[0].WeightClass} bout between ${mainCards[0].Fighters[0].FirstName} ${mainCards[0].Fighters[0].LastName} and ${mainCards[0].Fighters[1].FirstName} ${mainCards[0].Fighters[1].LastName} `
+          );
+        }
       case hoursLeftForEvent < 144:
         if (status == 'INIT') {
-          updateServerValue({ id: AirtableID, Status: 'LEVEL2' });
+          updateServerValue({ id: AirtableID, Status: 'MainCard 1' });
           return console.log(`Fight week ! #${event.Name}`);
         }
       default:
