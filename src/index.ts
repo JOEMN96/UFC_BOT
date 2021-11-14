@@ -1,12 +1,18 @@
 import { DateTime, Duration } from 'luxon';
 import dotenv from 'dotenv';
-import axios from './axios';
+import axios from 'axios';
 import { TwitterClient } from 'twitter-api-client';
 import axiosAirtableApi from './axiosAirtable';
 
-import Airtable from './functions/airtable';
-
 dotenv.config();
+
+const Airtable = axios.create({
+  baseURL: 'https://ufcapi.netlify.app/api/server',
+});
+
+const ufcApi = axios.create({
+  baseURL: 'https://api.sportsdata.io/v3/mma/scores/json/',
+});
 
 // console.log(DateTime.fromISO("2021-11-06T00:00:00").toFormat("DD"));
 const twitterClient = new TwitterClient({
@@ -40,7 +46,7 @@ function CheckDate(_eventDate: string, param: number) {
 
 async function getUpcomingEvent() {
   try {
-    let res = await axios.get(`Schedule/UFC/2021?key=${process.env.NODE_ENV}`);
+    let res = await ufcApi.get(`Schedule/UFC/2021?key=${process.env.NODE_ENV}`);
     let data = res.data;
     let events = [];
     data.forEach((event) => {
@@ -62,7 +68,7 @@ async function getUpcomingEvent() {
 
 async function getCurrentEvent(id: number) {
   try {
-    let res = await axios.get(`Event/${id}?key=${process.env.NODE_ENV}`);
+    let res = await ufcApi.get(`Event/${id}?key=${process.env.NODE_ENV}`);
     let event = res.data;
 
     let hoursLeftForEvent = CheckDate(event.DateTime, 3);
